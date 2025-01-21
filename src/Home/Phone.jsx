@@ -12,7 +12,7 @@ const Phone = ({rotateX,rotateY}) => {
                     rotateX,
                     rotateY,
                 }}
-                className='relative w-[250px] h-[500px] cursor-pointer mx-auto mt-[-100px]'
+                className='relative w-[250px] h-[500px] cursor-pointer mx-auto lg:mt-[-100px]'
                 initial={{
                     rotateY: 0,
                     // skew:"-6deg",

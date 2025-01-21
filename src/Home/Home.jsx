@@ -47,7 +47,7 @@ const Home = () => {
 
   return (
 
-    <div className='min-h-svh bg-landingBg mx-[30px] sm:mx-[60px] lg:flex pt-[80px] sm:pt-[168px]'
+    <div className='min-h-svh bg-landingBg mx-[30px] sm:mx-[60px] lg:flex pt-[80px] sm:pt-[168px] pb-20'
     onMouseMove={handleMouseMove}
     >
 
@@ -76,7 +76,7 @@ const Home = () => {
       </div>
 
       {/* Div 2 */}
-      <div className='lg:w-1/2'>
+      <div className='lg:w-1/2 mt-20 lg:mt-0'>
 
         {/* Background picture */}
         <Phone rotateX={rotateX} rotateY={rotateY}/>
