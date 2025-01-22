@@ -74,7 +74,7 @@ const Signup = () => {
                 </div>
 
                 {/* Password box only after email or name if present */}
-                <div className={`relative hidden`}>
+                <div className={`relative`}>
                   <PasswordInput register={register} errors={errors} />
                 </div>
                 {/* Password box only after email or name if present */}
