@@ -48,7 +48,7 @@ const Navbar = () => {
       </div>
 
       <div className={`overflow-x-hidden w-screen ${navClick ? "static" : "relative"}`}>
-        <div className={`bg-responsiveNavbarBgClr min-h-svh w-screen absolute top-0 z-10 duration-300 ${navClick ? "right-[0]" : "right-[-100vw]"} flex flex-col items-center justify-center py-24`}>
+        <div className={`bg-responsiveNavbarBgClr min-h-svh w-screen absolute top-0 z-10 duration-300 ${navClick ? "right-[0]" : "right-[-100vw]"} flex flex-col items-center py-36 sm:py-48`}>
           <ResponsivenavText text={"Marketplace"} />
           <ResNavmodal text={"Discover"} list={["Arraytree for Instagram", "Arraytree for LinkedIn", "Arraytree for Github"]} />
           <ResponsivenavText text={"Pricing"} />
