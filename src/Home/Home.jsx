@@ -1,55 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import Phone from './Phone';
 
 const Home = () => {
-
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
-
-  const mouseXSpring = useSpring(x)
-  const mouseYSpring = useSpring(y)
-
-  // const [rotationY,setRotationY] = useState(0)
-
-  const rotateX = useTransform(mouseYSpring,
-    [-0.5, 0.5], ['20.5deg', '-20.5deg']
-  )
-  const rotateY = useTransform(mouseXSpring,
-    [-0.5, 0.5], ['-17.5deg', '17.5deg']
-  )
-
-  const handleMouseMove = (e) => {
-
-    // const rect = e.target.getBoundingClientRect()  The e.target.getBoundingClientRect() method returns a DOMRect object that provides information about the size of the element and its position relative to the viewport
-    // const width = rect.width
-    // const height = rect.height
-
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-
-    const mouseXperc = (e.clientX / viewportWidth) - 0.5
-    const mouseYperc = (e.clientY / viewportHeight) - 0.5
-
-    x.set(mouseXperc)
-    y.set(mouseYperc)
-
-
-    // setRotationY(Number(rotateY.current.replace("deg","")))
-    // console.log(Number(rotationY.replace("deg","")))
-
-    // console.log(mouseXperc,mouseYperc)
-  }
 
   let [name, setName] = useState(undefined)
 
   return (
 
-    <div className='min-h-svh bg-landingBg mx-[30px] sm:mx-[60px] lg:flex pt-[80px] sm:pt-[168px] pb-20'
-    onMouseMove={handleMouseMove}
-    >
+    <div className='min-h-svh bg-landingBg mx-[30px] sm:mx-[60px] lg:flex pt-[80px] sm:pt-[168px] pb-20'>
 
       {/* Div 1 */}
       <div className='lg:w-1/2'>
@@ -77,9 +35,6 @@ const Home = () => {
 
       {/* Div 2 */}
       <div className='lg:w-1/2 mt-20 lg:mt-0'>
-
-        {/* Background picture */}
-        <Phone rotateX={rotateX} rotateY={rotateY}/>
 
       </div>
 

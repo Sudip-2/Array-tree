@@ -1,7 +1,6 @@
 import Navbar from "./Components/Navbar/Navbar"
 import {Outlet,useLocation,useParams} from 'react-router-dom'
 
-
 function App() {
 
   const {name} = useParams()
