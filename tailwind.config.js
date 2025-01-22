@@ -12,9 +12,7 @@ export default {
         headingTextClr:'#D2E823',
         claimBtn:'#E9C0E9',
         landingPage:"#254F1A",
-        loginBtnClr:'#8129D9',
-        responsiveNavbarBgClr:'#43E660',
-        responsiveNavbartextClr:'rgb(37, 79, 26)',
+        loginBtnClr:'#8129D9'
       },
       fontFamily:{
         headingFont:['Montserrat','sans-serif']
