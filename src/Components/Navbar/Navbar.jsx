@@ -1,9 +1,7 @@
-import React from "react";
 import Navbutton from "./Navbutton.jsx";
 import LoginBtn from "./LoginBtn.jsx";
 import SignupBtn from "./SignupBtn.jsx";
 import Navhoverbtn from "./Navhoverbtn.jsx";
-
 const Navbar = () => {
   return (
     <>
