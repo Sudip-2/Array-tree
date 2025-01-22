@@ -17,9 +17,9 @@ const ResNavmodal = ({ text, list }) => {
                 <span className='text-2xl mr-4'>{handlereseInsideNavclick ? <FaAngleDown /> : <FaChevronUp />}</span>
             </div>
             <ul className={`${handlereseInsideNavclick ? "block" : "hidden"} font-bold text-xl`}>
-                {list.map((item) => {
+                {list.map((item,index) => {
                     return (
-                        <li className='hover:bg-white my-4 py-2'>{item}</li>
+                        <li className='hover:bg-white my-4 py-2' key={index}>{item}</li>
                     )
                 })}
             </ul>
