@@ -25,7 +25,6 @@ const Navbar = () => {
           <img src="logo.svg" alt="svg logo of array tree" className='w-[30px]' />
 
           <div className='hidden lg:flex'>
-            <Navbutton name="Templates" />
             <Navbutton name="Marketplace" />
             <Navhoverbtn name="Discover" data={["Arraytree for Instagram", "Arraytree for LinkedIn", "Arraytree for Facebook"]} />
             <Navbutton name="Pricing" />

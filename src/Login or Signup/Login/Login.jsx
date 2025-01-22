@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import SigninBtn from './SigninBtn'
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
-import { CiMobile2 } from "react-icons/ci";
 import NavHeading from './NavHeading';
 import Bigheading from './Bigheading';
 import Fullwidthcontbtn from './Fullwidthcontbtn'
@@ -62,7 +61,6 @@ const Login = () => {
                 <p className='text-navLinkGreys'>OR</p>
                 <SigninBtn text={"Continue with Google"} icon={<FcGoogle />} />
                 <SigninBtn text={"Continue with Apple"} icon={<FaApple />} />
-                <SigninBtn text={"Continue with phone number"} icon={<CiMobile2 />} />
               </div>
 
               <div className='flex items-center gap-1 mt-[35px]'>
