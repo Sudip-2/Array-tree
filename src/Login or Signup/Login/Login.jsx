@@ -62,7 +62,6 @@ const Login = () => {
                 <p className='text-navLinkGreys'>OR</p>
                 <SigninBtn text={"Continue with Google"} icon={<FcGoogle />} />
                 <SigninBtn text={"Continue with Apple"} icon={<FaApple />} />
-                <SigninBtn text={"Continue with phone number"} icon={<CiMobile2 />} />
               </div>
 
               <div className='flex items-center gap-1 mt-[35px]'>
