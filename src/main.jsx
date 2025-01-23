@@ -12,6 +12,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import UsertypeGoal from "./auth/Usertype/UsertypeGoal.jsx";
+import Pricing from "./auth/Pricing/Pricing.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
         path="register/select-categories"
         element={<UsertypeGoal />}
       ></Route>
+      <Route path="register/select-price" element={<Pricing/>}></Route>
     </Route>
   )
 );

@@ -17,9 +17,9 @@ const Navhoverbtn = ({ name , data}) => {
         <div className='absolute w-[280px] h-[35px]'>
           <ul className='absolute w-[280px] top-[30px] bg-white p-[10px] leading-[45px] rounded-xl border'>
             {
-              data.map((item) => {
+              data.map((item,index) => {
                 return(
-                  <li className='hover:bg-gray-200 rounded-xl px-[10px] text-navLinkGrey cursor-pointer'>{item}</li>
+                  <li className='hover:bg-gray-200 rounded-xl px-[10px] text-navLinkGrey cursor-pointer' key={index}>{item}</li>
                 )
               })
             }

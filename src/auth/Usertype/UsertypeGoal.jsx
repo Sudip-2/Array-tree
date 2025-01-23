@@ -6,10 +6,12 @@ import BusinessPic from '../../Assets/businessCTG.svg'
 import PersonalPic from '../../Assets/personalCTG.svg'
 import Fullwidthcontbtn from '../../Components/AuthComponents/Fullwidthcontbtn'
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const UsertypeGoal = () => {
 
   const [progress, setProgress] = useState(0)
+  let navigate = useNavigate()
 
   const {
     register,
@@ -19,6 +21,7 @@ const UsertypeGoal = () => {
 
   const onSubmit = data => {
     console.log(data)
+    navigate('/register/select-price')
   }
 
 
@@ -35,7 +38,7 @@ const UsertypeGoal = () => {
           ></div>
         </div>
         {/* outline outline-black */}
-        <form className='max-w-[512px] mx-auto pb-8 relative'
+        <form className='max-w-[512px] mx-auto pb-24 relative'
           onSubmit={handleSubmit(onSubmit)}
         >
 
@@ -46,14 +49,14 @@ const UsertypeGoal = () => {
           {/* Categories box*/}
           <div>
             {/* Categories */}
-            <Categories textH={"Creator"} textP={"Build my following and explore ways to monetize my audience"} img={creatorPic} bgCLr={"Yellow"} val={"Creator"} register={register}/>
-            <Categories textH={"Business"} textP={"Grow my business and reach more customers."} img={BusinessPic} bgCLr={"#9400D3"} val={"Business"} register={register}/>
-            <Categories textH={"Personal"} textP={"Build my following and explore ways to monetize my audience"} img={PersonalPic} bgCLr={"red"} val={"Personal"} register={register}/>
+            <Categories textH={"Creator"} textP={"Build my following and explore ways to monetize my audience"} img={creatorPic} bgCLr={"Yellow"} val={"Creator"} register={register} />
+            <Categories textH={"Business"} textP={"Grow my business and reach more customers."} img={BusinessPic} bgCLr={"#9400D3"} val={"Business"} register={register} />
+            <Categories textH={"Personal"} textP={"Build my following and explore ways to monetize my audience"} img={PersonalPic} bgCLr={"red"} val={"Personal"} register={register} />
           </div>
 
-          <div className='sticky bottom-8'>
-            <Fullwidthcontbtn />
-          </div>
+            <div className='fixed w-1/2 left-[26%] bottom-8'>
+              <Fullwidthcontbtn />
+            </div>
 
         </form>
 

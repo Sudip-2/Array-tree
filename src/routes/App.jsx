@@ -15,6 +15,7 @@ function App() {
     `/register/${name}`,
     `/register/${name}/verify`,
     `/register/select-categories`,
+    `/register/select-price`,
   ];
   const showORnot = !pageNameToIgnore.includes(location.pathname);
   return (
