@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import UsertypeGoal from "./auth/Usertype/UsertypeGoal.jsx";
 import Pricing from "./auth/Pricing/Pricing.jsx";
+import Payment from "./auth/Pricing/Payment.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
         element={<UsertypeGoal />}
       ></Route>
       <Route path="register/select-price" element={<Pricing/>}></Route>
+      <Route path="register/billing" element={<Payment/>}></Route>
     </Route>
   )
 );

@@ -4,6 +4,7 @@ import MainHeading from '../../Components/AuthComponents/MainHeading'
 import Pricingbox from '../../Components/AuthComponents/Pricingbox'
 import Continue from '../../Components/AuthComponents/Fullwidthcontbtn'
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom'
 
 const Pricing = () => {
     // Need to add swiper js for mobile
@@ -12,8 +13,11 @@ const Pricing = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const navigate = useNavigate()
     const onSubmit = data => {
-        console.log(data)
+        if(data.choice != "Free"){
+            navigate('/register/billing')
+        }
     }
 
     return (
@@ -32,13 +36,13 @@ const Pricing = () => {
                 <form className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16' onSubmit={handleSubmit(onSubmit)}>
 
                     {/* Pricing box */}
-                    <Pricingbox text={"Free"} subText={"For your personal Linktree"} amt={"$0"} amtText={"Free, Forever"} feature={"Key features:"} linkName={["Unlimited Links"]} register={register} val={"Free"} />
+                    <Pricingbox text={"Free"} subText={"For your personal Linktree"} amt={"$0"} amtText={"Free, Forever"} feature={"Key features:"} linkName={["Unlimited Links"]} register={register} val={"Free"} defVal={false} />
 
-                    <Pricingbox text={"Starter"} subText={"For growing influencers"} amt={"Rs.150"} amtText={"annually, or Rs.250 monthly"} feature={"Everything in Free, plus:"} linkName={["Upgraded style options", "Monetization support affiliate marketing tools", "Scheduling", "Audience insights"]} register={register} val={"Starter"} />
+                    <Pricingbox text={"Starter"} subText={"For growing influencers"} amt={"Rs.150"} amtText={"annually, or Rs.250 monthly"} feature={"Everything in Free, plus:"} linkName={["Upgraded style options", "Monetization support affiliate marketing tools", "Scheduling", "Audience insights"]} register={register} val={"Starter"} defVal={false} />
 
-                    <Pricingbox text={"Pro"} subText={"For creators and businesses"} amt={"Free for 30 days"} amtText={"then Rs.300/mo annually, or Rs.450 monthly"} feature={"Everything in Starter, plus:"} linkName={["Advanced customization of buttons, themes, and fonts", "Click, conversion, and revenue tracking", "Upgraded customer support", "Option to hide Linktree logo", "Social platform integrations to automatically display your latest content", "Multiple admins"]} bgClr={"bg-purple-900"} hover={"Try Pro for Free"} register={register} val={"Pro"} />
+                    <Pricingbox text={"Pro"} subText={"For creators and businesses"} amt={"Free for 30 days"} amtText={"then Rs.300/mo annually, or Rs.450 monthly"} feature={"Everything in Starter, plus:"} linkName={["Advanced customization of buttons, themes, and fonts", "Click, conversion, and revenue tracking", "Upgraded customer support", "Option to hide Linktree logo", "Social platform integrations to automatically display your latest content", "Multiple admins"]} bgClr={"bg-purple-900"} hover={"Try Pro for Free"} register={register} val={"Pro"} defVal={true} />
 
-                    <Pricingbox text={"Premium"} subText={"For brands and businesses"} amt={"Rs.900"} amtText={"annually, or Rs.1,000 monthly"} feature={"Everything in Pro, plus:"} linkName={["Dedicated customer success manager with 1-1 onboarding", "Analytics: Export lifetime data", "Access to exclusive webinars & best practice videos", "Premium support, response time 4 hours"]} register={register} val={"Premium"} />
+                    <Pricingbox text={"Premium"} subText={"For brands and businesses"} amt={"Rs.900"} amtText={"annually, or Rs.1,000 monthly"} feature={"Everything in Pro, plus:"} linkName={["Dedicated customer success manager with 1-1 onboarding", "Analytics: Export lifetime data", "Access to exclusive webinars & best practice videos", "Premium support, response time 4 hours"]} register={register} val={"Premium"} defVal={false} />
 
                     <div className='fixed bottom-8 w-1/2 left-[26%]'>
                         <Continue />

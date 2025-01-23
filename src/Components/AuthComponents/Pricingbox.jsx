@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Right from '../../Assets/right.svg'
 
-const Pricingbox = ({ text, subText, amt, amtText, feature, linkName, bgClr, hover, val, register }) => {
+const Pricingbox = ({ text, subText, amt, amtText, feature, linkName, bgClr, hover, val, register,defVal }) => {
 
     let handleRadioCheck = e => {
         e.currentTarget.querySelector('input[type="radio"]').click()
@@ -18,7 +18,7 @@ const Pricingbox = ({ text, subText, amt, amtText, feature, linkName, bgClr, hov
                 </div>
                 <div className={`h-6 w-6 rounded-lg flex justify-center items-center`}>
                     {/* <img src={Right} alt="right" className={`w-[80%] h-[80%] object-cover hidden`} /> */}
-                    <input type="radio" value={val} {...register("choice", {
+                    <input type="radio" value={val} defaultChecked={defVal} {...register("choice", {
                         required: true
                     })} className="w-[80%] h-[80%] object-cover"
                     />
