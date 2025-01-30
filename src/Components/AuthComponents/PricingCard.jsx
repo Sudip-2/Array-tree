@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
-import Pricingcontext from '../../context/PricingContext'
+import { useLocation } from "react-router-dom";
 
 
 const PricingCard = () => {
 
-    const { billAmount } = useContext(Pricingcontext)
+    const query = new URLSearchParams(useLocation().search);
+    const billAmount = query.get("amt");
     const [annually, setAnnually] = useState(true)
     const annuallyFortyPercent = ((billAmount * 12) * 60) / 100
 

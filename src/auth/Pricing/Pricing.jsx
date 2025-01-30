@@ -5,29 +5,29 @@ import Pricingbox from '../../Components/AuthComponents/Pricingbox'
 import Continue from '../../Components/AuthComponents/Fullwidthcontbtn'
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom'
-import Pricingcontext from '../../context/PricingContext'
 
 const Pricing = () => {
-    // Need to add swiper js for mobile
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const {setBillamount} = useContext(Pricingcontext)
     const navigate = useNavigate()
     const onSubmit = data => {
-        if(data.choice != "Free"){
+        if(data.choice == "Free"){
+            navigate("/register/user")
+        }
+        if (data.choice != "Free") {
             console.log(data)
-            navigate('/register/billing')
-            if(data.choice == "Starter"){
-                setBillamount(250)
+            if (data.choice == "Starter") {
+                navigate('/register/billing?amt=250')
             }
-            else if(data.choice == "Pro"){
-                setBillamount(450)
+            else if (data.choice == "Pro") {
+                navigate('/register/billing?amt=450')
             }
-            else{
-                setBillamount(1000)
+            else {
+                navigate('/register/billing?amt=1000')
             }
         }
     }

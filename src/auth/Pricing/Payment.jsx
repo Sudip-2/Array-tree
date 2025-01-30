@@ -11,7 +11,7 @@ import EmailInput from '../../Components/AuthComponents/EmailInput';
 import FloatingInputBox from '../../Components/AuthComponents/FloatingInputBox';
 import ErrorDiv from '../../Components/AuthComponents/ErrorDiv';
 import SelectOption from '../../Components/AuthComponents/SelectOption';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import PricingCard from '../../Components/AuthComponents/PricingCard';
 
 const Payment = () => {
@@ -22,9 +22,11 @@ const Payment = () => {
         formState: { errors },
     } = useForm();
 
+    const navigate = useNavigate()
+
     const onSubmit = data => {
         console.log(data)
-        navigate('/register/select-price')
+        navigate('/register/user')
     }
 
     // let countryNames = async () => {
@@ -96,7 +98,7 @@ const Payment = () => {
 
                         <div className='mt-20 lg:mt-0'>
 
-                            <PricingCard/>
+                            <PricingCard />
 
                         </div>
 

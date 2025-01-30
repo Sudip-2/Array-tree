@@ -14,6 +14,7 @@ import {
 import UsertypeGoal from "./auth/Usertype/UsertypeGoal.jsx";
 import Pricing from "./auth/Pricing/Pricing.jsx";
 import Payment from "./auth/Pricing/Payment.jsx";
+import Profile from "./User/Profile.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       ></Route>
       <Route path="register/select-price" element={<Pricing/>}></Route>
       <Route path="register/billing" element={<Payment/>}></Route>
+      <Route path="register/user" element={<Profile/>}></Route>
     </Route>
   )
 );
