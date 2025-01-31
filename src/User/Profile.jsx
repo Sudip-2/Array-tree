@@ -4,9 +4,21 @@ import Profilepic from '../Components/UserComponents/Profilepic';
 import SubHeading from '../Components/UserComponents/SubHeading';
 import Backgroundpic from '../Components/UserComponents/Backgroundpic';
 import Continue from '../Components/AuthComponents/Fullwidthcontbtn'
+import { FaYoutube } from "react-icons/fa";
+import AddLinks from '../Components/UserComponents/AddLinks';
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import AddBtnForLinks from '../Components/UserComponents/AddBtnForLinks';
+import { PiLinkSimpleBold } from "react-icons/pi";
 
 const Profile = () => {
   const [wordLimit, setWordLimit] = useState(80)
+  const [show,setShow] = useState(false)
+  const handleOnlinkClick = () => {
+    setShow(!show)
+  }
+
   return (
     <>
       <div className='min-h-svh bg-white pt-10 px-4 pb-28'>
@@ -43,8 +55,30 @@ const Profile = () => {
           </div>
 
           {/* Links */}
-          <div>
-            
+          <div className='mt-6 text-center'>
+
+            <SubHeading text={"Add Links to your Arraytree"} />
+
+            <div className='mt-4 '>
+
+              <div className='grid grid-cols-4 gap-8'>
+
+                <AddBtnForLinks icon={<FaLinkedin />} color={"text-blue-500"} addlink={handleOnlinkClick}/>
+                <AddBtnForLinks icon={<FaGithub />} color={""} addlink={handleOnlinkClick}/>
+                <AddBtnForLinks icon={<FaYoutube />} color={"text-red-500"} addlink={handleOnlinkClick}/>
+                <AddBtnForLinks icon={<FaSquareXTwitter />} color={""} addlink={handleOnlinkClick}/>
+                <AddBtnForLinks icon={<PiLinkSimpleBold />} color={""} addlink={handleOnlinkClick}/>
+
+              </div>
+
+              <div className='mt-8'>
+                <div className={`mt-2 ${show?"block":"hidden"}`}>
+                  <AddLinks icon={<FaYoutube />} color={'text-red-500'} linkName={"Youtube"} />
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
           <div className='fixed bottom-8 w-1/3 left-[33%]'>
