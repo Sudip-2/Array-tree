@@ -1,11 +1,9 @@
 import React from 'react'
 
-const AddBtnForLinks = ({icon,color,addlink}) => {
+const AddBtnForLinks = ({icon,color}) => {
     return (
         <>
-            <div className={`text-5xl ${color} mx-auto cursor-pointer`}
-            onClick={addlink}
-            >
+            <div className={`text-5xl ${color} mx-auto cursor-pointer bg-white`}>
                 {icon}
             </div>
         </>

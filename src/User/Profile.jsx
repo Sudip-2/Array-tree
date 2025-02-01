@@ -14,10 +14,11 @@ import { PiLinkSimpleBold } from "react-icons/pi";
 
 const Profile = () => {
   const [wordLimit, setWordLimit] = useState(80)
-  const [show,setShow] = useState(false)
-  const handleOnlinkClick = () => {
-    setShow(!show)
-  }
+  const [ytshow, setYtshow] = useState(false)
+  const [gitshow, setGitshow] = useState(false)
+  const [linkedinshow, setLInkedinshow] = useState(false)
+  const [Xshow, setXshow] = useState(false)
+  const [personalLinkshow, setPersoLinkshow] = useState(false)
 
   return (
     <>
@@ -63,17 +64,39 @@ const Profile = () => {
 
               <div className='grid grid-cols-4 gap-8'>
 
-                <AddBtnForLinks icon={<FaLinkedin />} color={"text-blue-500"} addlink={handleOnlinkClick}/>
-                <AddBtnForLinks icon={<FaGithub />} color={""} addlink={handleOnlinkClick}/>
-                <AddBtnForLinks icon={<FaYoutube />} color={"text-red-500"} addlink={handleOnlinkClick}/>
-                <AddBtnForLinks icon={<FaSquareXTwitter />} color={""} addlink={handleOnlinkClick}/>
-                <AddBtnForLinks icon={<PiLinkSimpleBold />} color={""} addlink={handleOnlinkClick}/>
+                <div onClick={() => setLInkedinshow(!linkedinshow)}>
+                  <AddBtnForLinks icon={<FaLinkedin />} color={"text-blue-500"} />
+                </div>
+                <div onClick={() => setGitshow(!gitshow)}>
+                  <AddBtnForLinks icon={<FaGithub />} color={""} />
+                </div>
+                <div onClick={() => setYtshow(!ytshow)}>
+                  <AddBtnForLinks icon={<FaYoutube />} color={"text-red-500"} />
+                </div>
+                <div onClick={() => setXshow(!Xshow)}>
+                  <AddBtnForLinks icon={<FaSquareXTwitter />} color={""} />
+                </div>
+                <div onClick={() => setPersoLinkshow(!personalLinkshow)}>
+                  <AddBtnForLinks icon={<PiLinkSimpleBold />} color={""} />
+                </div>
 
               </div>
 
               <div className='mt-8'>
-                <div className={`mt-2 ${show?"block":"hidden"}`}>
+                <div className={`mt-2 ${linkedinshow ? "block" : "hidden"}`}>
+                  <AddLinks icon={<FaLinkedin />} color={'text-blue-500'} linkName={"LinkedIn"} />
+                </div>
+                <div className={`mt-2 ${gitshow ? "block" : "hidden"}`}>
+                  <AddLinks icon={<FaGithub />} color={''} linkName={"Github"} />
+                </div>
+                <div className={`mt-2 ${ytshow ? "block" : "hidden"}`}>
                   <AddLinks icon={<FaYoutube />} color={'text-red-500'} linkName={"Youtube"} />
+                </div>
+                <div className={`mt-2 ${Xshow ? "block" : "hidden"}`}>
+                  <AddLinks icon={<FaSquareXTwitter />} color={''} linkName={"Twitter/X"} />
+                </div>
+                <div className={`mt-2 ${personalLinkshow ? "block" : "hidden"}`}>
+                  <AddLinks icon={<PiLinkSimpleBold />} color={''} linkName={"customLink"} />
                 </div>
               </div>
 
