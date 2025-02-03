@@ -4,7 +4,7 @@ const Categories = ({ textH, textP, img, bgCLr, val, register }) => {
 
 
   return (
-    <div className={`mt-4 h-[110px] outline outline-1 outline-gray-200 rounded-xl hover:outline-gray-500 cursor-pointer flex items-center px-4 justify-between`}
+    <div tabIndex={0} className={`mt-4 h-[110px] outline outline-1 outline-gray-200 rounded-xl hover:outline-gray-500 cursor-pointer flex items-center px-4 justify-between focus:outline-gray-500`}
       onClick={(e) => {
         e.currentTarget.querySelector('input[type="radio"]').click();
       }}

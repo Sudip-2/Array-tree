@@ -8,7 +8,7 @@ const Pricingbox = ({ text, subText, amt, amtText, feature, linkName, bgClr, hov
     }
 
     return (
-        <div className={`col-span-1 cursor-pointer rounded-3xl hover:outline-2 duration-100 outline outline-1 outline-gray-300`}
+        <div tabIndex={0} className={`col-span-1 cursor-pointer rounded-3xl focus:outline-2 hover:outline-2 duration-100 outline outline-1 outline-gray-300`}
             onClick={(e) => { handleRadioCheck(e) }}>
             <div className={`flex justify-between outline outline-1 outline-gray-300 p-4 rounded-t-3xl items-center ${bgClr} ${bgClr ? "text-white" : "text-black"} relative`}>
                 <div>

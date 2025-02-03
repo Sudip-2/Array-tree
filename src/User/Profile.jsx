@@ -46,12 +46,12 @@ const Profile = () => {
               <span className='absolute bottom-3 right-4 text-gray-400'>{wordLimit}/80</span>
             </div>
 
-            <div className='mt-6 flex flex-col items-center gap-6'>
+            {/* <div className='mt-6 flex flex-col items-center gap-6'>
               <SubHeading text={"Select a Background Image/template"} />
 
               <Backgroundpic />
 
-            </div>
+            </div> */}
 
           </div>
 
@@ -70,12 +70,6 @@ const Profile = () => {
                 <div onClick={() => setGitshow(!gitshow)}>
                   <AddBtnForLinks icon={<FaGithub />} color={""} />
                 </div>
-                <div onClick={() => setYtshow(!ytshow)}>
-                  <AddBtnForLinks icon={<FaYoutube />} color={"text-red-500"} />
-                </div>
-                <div onClick={() => setXshow(!Xshow)}>
-                  <AddBtnForLinks icon={<FaSquareXTwitter />} color={""} />
-                </div>
                 <div onClick={() => setPersoLinkshow(!personalLinkshow)}>
                   <AddBtnForLinks icon={<PiLinkSimpleBold />} color={""} />
                 </div>
@@ -88,12 +82,6 @@ const Profile = () => {
                 </div>
                 <div className={`mt-2 ${gitshow ? "block" : "hidden"}`}>
                   <AddLinks icon={<FaGithub />} color={''} linkName={"Github"} />
-                </div>
-                <div className={`mt-2 ${ytshow ? "block" : "hidden"}`}>
-                  <AddLinks icon={<FaYoutube />} color={'text-red-500'} linkName={"Youtube"} />
-                </div>
-                <div className={`mt-2 ${Xshow ? "block" : "hidden"}`}>
-                  <AddLinks icon={<FaSquareXTwitter />} color={''} linkName={"Twitter/X"} />
                 </div>
                 <div className={`mt-2 ${personalLinkshow ? "block" : "hidden"}`}>
                   <AddLinks icon={<PiLinkSimpleBold />} color={''} linkName={"customLink"} />
