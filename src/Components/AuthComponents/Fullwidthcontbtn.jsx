@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const Fullwidthcontbtn = () => {
+const Fullwidthcontbtn = ({ disabled }) => {
   return (
-    <button type='submit' className='w-full bg-loginBtnClr py-[15px] rounded-full text-white font-bold hover:bg-purple-800'>Continue</button>
-  )
-}
+    <button
+      type="submit"
+      disabled={disabled}
+      className="w-full disabled:bg-purple-400 bg-loginBtnClr py-[15px] rounded-full text-white font-bold hover:bg-purple-800"
+    >
+      Continue
+    </button>
+  );
+};
 
-export default Fullwidthcontbtn
+export default Fullwidthcontbtn;

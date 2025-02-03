@@ -4,10 +4,16 @@ import FirebaseContext from "../context/FirebaseContext";
 import FirebaseApp from "../util/FirebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
+import defaultUserPic from "../assets/userPic.webp";
 function App() {
   const { name } = useParams();
   const location = useLocation();
-
+  const [email, setemail] = useState("");
+  const [username, setusername] = useState("");
+  const [personalgoal, setpersonalgoal] = useState("");
+  const [plan, setplan] = useState("");
+  const [password, setpassword] = useState("");
+  const [profilepic, setprofilepic] = useState(defaultUserPic);
   onAuthStateChanged(getAuth(FirebaseApp), (user) => {
     console.log(user);
   });
@@ -18,12 +24,28 @@ function App() {
     `/register/select-categories`,
     `/register/select-price`,
     `/register/billing`,
-    `/register/user`
+    `/register/user`,
   ];
   const showORnot = !pageNameToIgnore.includes(location.pathname);
   return (
     <>
-      <FirebaseContext.Provider value={{ FirebaseApp }}>
+      <FirebaseContext.Provider
+        value={{
+          FirebaseApp,
+          email,
+          setemail,
+          username,
+          setusername,
+          personalgoal,
+          setpersonalgoal,
+          plan,
+          setplan,
+          password,
+          setpassword,
+          profilepic,
+          setprofilepic,
+        }}
+      >
         {showORnot && <Navbar />}
         <Outlet />
       </FirebaseContext.Provider>

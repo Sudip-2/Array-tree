@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import SigninBtn from "../../Components/AuthComponents/SigninBtn";
@@ -12,6 +12,7 @@ import signinPic from "../../assets/signin.png";
 import EmailInput from "../../Components/AuthComponents/EmailInput";
 import PasswordInput from "../../Components/AuthComponents/PasswordInput";
 import { IoIosArrowBack } from "react-icons/io";
+import FirebaseContext from "../../context/FirebaseContext";
 
 const Signup = () => {
   const {
@@ -20,8 +21,8 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const { name } = useParams();
-
-  const [userName, setUserName] = useState("");
+  const { setusername, setemail, setpassword } = useContext(FirebaseContext);
+  // const [userName, setUserName] = useState("");
   const navigate = useNavigate();
 
   // Using next page next page e jete parbi after signup to choose username
@@ -32,10 +33,12 @@ const Signup = () => {
   }, []);
 
   const onSubmit = (data) => {
+    setemail(data.Email);
+    setpassword(data.Password);
     setNextPage(!nextPage);
   };
 
-  const redirect = (data) => {
+  const redirect = () => {
     navigate("/register/select-categories");
   };
 
@@ -114,7 +117,7 @@ const Signup = () => {
                     type="text"
                     className="h-[20px] w-full py-[25px] bg-navHoverGrey rounded-lg pl-[86px] pr-[10px] text-navLinkGrey"
                     placeholder="Your Name"
-                    onChange={(e) => setUserName(e.target.value)}
+                    onChange={(e) => setusername(e.target.value)}
                     required
                   />
                 </div>
