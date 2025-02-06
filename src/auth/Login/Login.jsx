@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SigninBtn from "../../Components/AuthComponents/SigninBtn";
 import { FcGoogle } from "react-icons/fc";
@@ -14,13 +14,13 @@ import PasswordInput from "../../Components/AuthComponents/PasswordInput";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import FirebaseContext from "../../context/FirebaseContext";
 const Login = () => {
-  const { FirebaseApp } = useContext(FirebaseContext);
+  const { FirebaseApp, user, setuser } = useContext(FirebaseContext);
+  const Navigation = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const onSubmit = async (data) => {
     try {
       const User = await signInWithEmailAndPassword(
@@ -28,6 +28,10 @@ const Login = () => {
         data.Email,
         data.Password
       );
+      if (User) {
+        setuser(User);
+        Navigation("/dashboard");
+      }
       console.log(User);
     } catch (error) {
       console.log(error);
@@ -35,6 +39,9 @@ const Login = () => {
   };
 
   useEffect(() => {
+    if (user) {
+      Navigation("/dashboard");
+    }
     document.title = "Log in or Sign Up | Arraytree";
   }, []);
 

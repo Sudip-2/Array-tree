@@ -1,9 +1,9 @@
 import Navbar from "../Components/Navbar/Navbar";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import FirebaseContext from "../context/FirebaseContext";
 import FirebaseApp from "../util/FirebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import defaultUserPic from "../assets/userPic.webp";
 function App() {
   const { name } = useParams();
@@ -14,9 +14,16 @@ function App() {
   const [plan, setplan] = useState("");
   const [password, setpassword] = useState("");
   const [profilepic, setprofilepic] = useState(defaultUserPic);
-  onAuthStateChanged(getAuth(FirebaseApp), (user) => {
-    console.log(user);
-  });
+  const [user, setuser] = useState(null);
+  const Navigate = useNavigate();
+  useEffect(() => {
+    onAuthStateChanged(getAuth(FirebaseApp), (user) => {
+      if (user) {
+        setuser(user);
+      }
+    });
+  }, []);
+
   const pageNameToIgnore = [
     "/login",
     `/register/${name}`,
@@ -27,6 +34,9 @@ function App() {
     `/register/user`,
   ];
   const showORnot = !pageNameToIgnore.includes(location.pathname);
+  if (user) {
+    Navigate("/dashboard");
+  }
   return (
     <>
       <FirebaseContext.Provider
@@ -44,6 +54,8 @@ function App() {
           setpassword,
           profilepic,
           setprofilepic,
+          user,
+          setuser,
         }}
       >
         {showORnot && <Navbar />}

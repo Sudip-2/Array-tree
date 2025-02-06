@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import MainHeading from "../../Components/AuthComponents/MainHeading";
 import Categories from "../../Components/AuthComponents/Categories";
 import creatorPic from "../../Assets/creatorCTG.svg";
