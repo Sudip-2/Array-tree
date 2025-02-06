@@ -7,6 +7,7 @@ import { IoReorderThreeOutline } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import ResponsivenavText from './ResponsivenavText.jsx'
 import ResNavmodal from './ResNavmodal.jsx'
+import LogoutBtn from './LogoutBtn.jsx'
 
 const Navbar = () => {
 
@@ -35,6 +36,7 @@ const Navbar = () => {
 
         {/* Part 2 */}
         <div className='flex gap-3 items-center'>
+          <LogoutBtn/>
           <LoginBtn />
           <SignupBtn />
           <span
