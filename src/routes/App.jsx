@@ -5,7 +5,6 @@ import FirebaseApp from "../util/FirebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import defaultUserPic from "../assets/userPic.webp";
-import { Triangle } from 'react-loader-spinner'
 
 function App() {
   const { name } = useParams();
@@ -62,15 +61,7 @@ function App() {
       >
         {showORnot && <Navbar />}
         <Outlet />
-        {/* <div className="h-screen  flex justify-center items-center">
-          <Triangle
-            visible={true}
-            height="80"
-            width="80"
-            color="#4fa94d"
-            ariaLabel="triangle-loading"
-          />
-        </div> */}
+       
       </FirebaseContext.Provider>
     </>
   );
