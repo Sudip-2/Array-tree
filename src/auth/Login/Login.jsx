@@ -13,6 +13,8 @@ import EmailInput from "../../Components/AuthComponents/EmailInput";
 import PasswordInput from "../../Components/AuthComponents/PasswordInput";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import FirebaseContext from "../../context/FirebaseContext";
+import Loader from "../../Components/Loader";
+import ErrorDiv from "../../Components/AuthComponents/ErrorDiv";
 const Login = () => {
   const [Loading, setLoading] = useState(false);
   const { FirebaseApp, user, setuser } = useContext(FirebaseContext);
@@ -68,19 +70,25 @@ const Login = () => {
                   text2="Log in to your Linktree"
                 />
 
-              <form
-                className="flex flex-col w-full gap-3 mt-[45px]"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <div className="relative">
-                  <EmailInput register={register} errors={errors} />
-                </div>
+                <form
+                  className="flex flex-col w-full gap-3 mt-[45px]"
+                  onSubmit={handleSubmit(onSubmit)}
+                >
+                  <div className="relative">
+                    <EmailInput register={register} errors={errors} />
+                    <div className="hidden">
+                      <ErrorDiv text={"Enter correct postal code"} />
+                    </div>
+                  </div>
 
-                {/* Password box only after email or name if present */}
-                <div className="relative">
-                  <PasswordInput register={register} errors={errors} />
-                </div>
-                {/* Password box only after email or name if present */}
+                  {/* Password box only after email or name if present */}
+                  <div className="relative">
+                    <PasswordInput register={register} errors={errors} />
+                    <div className="hidden">
+                      <ErrorDiv text={"Enter correct postal code"} />
+                    </div>
+                  </div>
+                  {/* Password box only after email or name if present */}
 
                   <Fullwidthcontbtn />
                 </form>
