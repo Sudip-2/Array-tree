@@ -13,6 +13,16 @@ import EmailInput from "../../Components/AuthComponents/EmailInput";
 import PasswordInput from "../../Components/AuthComponents/PasswordInput";
 import { IoIosArrowBack } from "react-icons/io";
 import FirebaseContext from "../../context/FirebaseContext";
+<<<<<<< HEAD
+import ErrorDiv from "../../Components/AuthComponents/ErrorDiv";
+=======
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+} from "firebase/firestore/lite";
+>>>>>>> 54ad07020e5a8b49814f31f623defd815bde3753
 
 const Signup = () => {
   const {
