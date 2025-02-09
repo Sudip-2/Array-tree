@@ -13,6 +13,7 @@ import EmailInput from "../../Components/AuthComponents/EmailInput";
 import PasswordInput from "../../Components/AuthComponents/PasswordInput";
 import { IoIosArrowBack } from "react-icons/io";
 import FirebaseContext from "../../context/FirebaseContext";
+import ErrorDiv from "../../Components/AuthComponents/ErrorDiv";
 
 const Signup = () => {
   const {
@@ -92,11 +93,17 @@ const Signup = () => {
               >
                 <div className={`relative`}>
                   <EmailInput register={register} errors={errors} />
+                  <div className="hidden">
+                    <ErrorDiv text={"Enter correct postal code"} />
+                  </div>
                 </div>
 
                 {/* Password box only after email or name if present */}
                 <div className={`relative`}>
                   <PasswordInput register={register} errors={errors} />
+                  <div className="hidden">
+                    <ErrorDiv text={"Enter correct postal code"} />
+                  </div>
                 </div>
                 {/* Password box only after email or name if present */}
 
@@ -120,6 +127,9 @@ const Signup = () => {
                     onChange={(e) => setusername(e.target.value)}
                     required
                   />
+                  <div className="hidden">
+                    <ErrorDiv text={"Enter correct postal code"} />
+                  </div>
                 </div>
                 <Fullwidthcontbtn />
               </form>
