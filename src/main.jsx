@@ -15,14 +15,14 @@ import UsertypeGoal from "./auth/Usertype/UsertypeGoal.jsx";
 import Pricing from "./auth/Pricing/Pricing.jsx";
 import Payment from "./auth/Pricing/Payment.jsx";
 import Profile from "./User/Profile.jsx";
-import dashboard from "./routes/dashboard.jsx";
+import MyDashboard from "./routes/dashboard.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Home />}></Route>
       <Route path="login" element={<Login />}></Route>
       <Route path="register/:name" element={<Signup />}></Route>
-      <Route path="dashboard" element={<dashboard />}></Route>
+      <Route path="dashboard" element={<MyDashboard />}></Route>
       <Route
         path="register/select-categories"
         element={<UsertypeGoal />}
