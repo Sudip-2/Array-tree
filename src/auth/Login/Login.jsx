@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SigninBtn from "../../Components/AuthComponents/SigninBtn";
@@ -13,8 +13,8 @@ import EmailInput from "../../Components/AuthComponents/EmailInput";
 import PasswordInput from "../../Components/AuthComponents/PasswordInput";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import FirebaseContext from "../../context/FirebaseContext";
-import ErrorDiv from "../../Components/AuthComponents/ErrorDiv";
 const Login = () => {
+  const [Loading, setLoading] = useState(false);
   const { FirebaseApp, user, setuser } = useContext(FirebaseContext);
   const Navigation = useNavigate();
   const {
@@ -24,6 +24,7 @@ const Login = () => {
   } = useForm();
   const onSubmit = async (data) => {
     try {
+      setLoading(true);
       const User = await signInWithEmailAndPassword(
         getAuth(FirebaseApp),
         data.Email,
@@ -33,8 +34,9 @@ const Login = () => {
         setuser(User);
         Navigation("/dashboard");
       }
-      console.log(User);
+      // console.log(User);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -45,24 +47,26 @@ const Login = () => {
     }
     document.title = "Log in or Sign Up | Arraytree";
   }, []);
+  if (Loading) {
+    return <Loader />;
+  } else {
+    return (
+      <>
+        <div className="min-h-svh lg:flex bg-white pb-[70px] lg:pb-0">
+          {/* Login part */}
+          <div className="lg:w-1/2">
+            <div className="pt-[40px]">
+              {/* Logolink part */}
+              <div className="mx-[30px] sm:mx-[50px]">
+                <NavHeading />
+              </div>
 
-  return (
-    <>
-      <div className="min-h-svh lg:flex bg-white pb-[70px] lg:pb-0">
-        {/* Login part */}
-        <div className="lg:w-1/2">
-          <div className="pt-[40px]">
-            {/* Logolink part */}
-            <div className="mx-[30px] sm:mx-[50px]">
-              <NavHeading />
-            </div>
-
-            {/* form part */}
-            <div className="flex flex-col items-center mt-[100px] mx-[30px] sm:mx-[80px]">
-              <Bigheading
-                text1="Welcome back!"
-                text2="Log in to your Linktree"
-              />
+              {/* form part */}
+              <div className="flex flex-col items-center mt-[100px] mx-[30px] sm:mx-[80px]">
+                <Bigheading
+                  text1="Welcome back!"
+                  text2="Log in to your Linktree"
+                />
 
               <form
                 className="flex flex-col w-full gap-3 mt-[45px]"
@@ -70,53 +74,51 @@ const Login = () => {
               >
                 <div className="relative">
                   <EmailInput register={register} errors={errors} />
-                  <div className="hidden">
-                    <ErrorDiv text={"Enter correct postal code"} />
-                  </div>
                 </div>
 
                 {/* Password box only after email or name if present */}
                 <div className="relative">
                   <PasswordInput register={register} errors={errors} />
-                  <div className="hidden">
-                    <ErrorDiv text={"Enter correct postal code"} />
-                  </div>
                 </div>
                 {/* Password box only after email or name if present */}
 
-                <Fullwidthcontbtn />
-              </form>
+                  <Fullwidthcontbtn />
+                </form>
 
-              <div className="flex flex-col items-center w-full gap-3 mt-[35px]">
-                <p className="text-navLinkGreys">OR</p>
-                <SigninBtn text={"Continue with Google"} icon={<FcGoogle />} />
-                <SigninBtn text={"Continue with Apple"} icon={<FaApple />} />
+                <div className="flex flex-col items-center w-full gap-3 mt-[35px]">
+                  <p className="text-navLinkGreys">OR</p>
+                  <SigninBtn
+                    text={"Continue with Google"}
+                    icon={<FcGoogle />}
+                  />
+                  <SigninBtn text={"Continue with Apple"} icon={<FaApple />} />
+                </div>
+
+                <div className="flex items-center gap-1 mt-[35px]">
+                  <Link className="text-loginBtnClr underline">
+                    Forgotpassword?
+                  </Link>
+                  <span className="text-xs">&#9679;</span>
+                  <Link className="text-loginBtnClr underline">
+                    Forgot username?
+                  </Link>
+                </div>
+
+                <Accountornot
+                  text1="Don't have an account? "
+                  text2="Sign up"
+                  to="/register/undefined"
+                />
               </div>
-
-              <div className="flex items-center gap-1 mt-[35px]">
-                <Link className="text-loginBtnClr underline">
-                  Forgotpassword?
-                </Link>
-                <span className="text-xs">&#9679;</span>
-                <Link className="text-loginBtnClr underline">
-                  Forgot username?
-                </Link>
-              </div>
-
-              <Accountornot
-                text1="Don't have an account? "
-                text2="Sign up"
-                to="/register/undefined"
-              />
             </div>
           </div>
-        </div>
 
-        {/* Image */}
-        <img src={loginPic} alt="" className="hidden lg:block w-1/2" />
-      </div>
-    </>
-  );
+          {/* Image */}
+          <img src={loginPic} alt="" className="hidden lg:block w-1/2" />
+        </div>
+      </>
+    );
+  }
 };
 
 export default Login;

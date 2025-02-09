@@ -5,8 +5,7 @@ import FirebaseApp from "../util/FirebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import defaultUserPic from "../assets/userPic.webp";
-import { Triangle } from 'react-loader-spinner'
-
+import Loader from "../Components/Loader";
 function App() {
   const { name } = useParams();
   const location = useLocation();
@@ -17,11 +16,14 @@ function App() {
   const [password, setpassword] = useState("");
   const [profilepic, setprofilepic] = useState(defaultUserPic);
   const [user, setuser] = useState(null);
+  const [Loading, setLoading] = useState(true);
   const Navigate = useNavigate();
   useEffect(() => {
     onAuthStateChanged(getAuth(FirebaseApp), (user) => {
       if (user) {
         setuser(user);
+      } else {
+        setLoading(false);
       }
     });
   }, []);
@@ -36,44 +38,39 @@ function App() {
     `/register/user`,
   ];
   const showORnot = !pageNameToIgnore.includes(location.pathname);
-  if (user) {
-    Navigate("/dashboard");
+  if (Loading) {
+    return <Loader />;
+  } else {
+    if (user) {
+      Navigate("/dashboard");
+    }
+    return (
+      <>
+        <FirebaseContext.Provider
+          value={{
+            FirebaseApp,
+            email,
+            setemail,
+            username,
+            setusername,
+            personalgoal,
+            setpersonalgoal,
+            plan,
+            setplan,
+            password,
+            setpassword,
+            profilepic,
+            setprofilepic,
+            user,
+            setuser,
+          }}
+        >
+          {showORnot && <Navbar />}
+          <Outlet />
+        </FirebaseContext.Provider>
+      </>
+    );
   }
-  return (
-    <>
-      <FirebaseContext.Provider
-        value={{
-          FirebaseApp,
-          email,
-          setemail,
-          username,
-          setusername,
-          personalgoal,
-          setpersonalgoal,
-          plan,
-          setplan,
-          password,
-          setpassword,
-          profilepic,
-          setprofilepic,
-          user,
-          setuser,
-        }}
-      >
-        {showORnot && <Navbar />}
-        <Outlet />
-        {/* <div className="h-screen  flex justify-center items-center">
-          <Triangle
-            visible={true}
-            height="80"
-            width="80"
-            color="#4fa94d"
-            ariaLabel="triangle-loading"
-          />
-        </div> */}
-      </FirebaseContext.Provider>
-    </>
-  );
 }
 
 export default App;

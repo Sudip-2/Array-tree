@@ -13,7 +13,6 @@ import EmailInput from "../../Components/AuthComponents/EmailInput";
 import PasswordInput from "../../Components/AuthComponents/PasswordInput";
 import { IoIosArrowBack } from "react-icons/io";
 import FirebaseContext from "../../context/FirebaseContext";
-import ErrorDiv from "../../Components/AuthComponents/ErrorDiv";
 
 const Signup = () => {
   const {
@@ -22,7 +21,10 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const { name } = useParams();
-  const { setusername, setemail, setpassword } = useContext(FirebaseContext);
+  const { setusername, username, email, setemail, setpassword, FirebaseApp } =
+    useContext(FirebaseContext);
+  const MyDB = getFirestore(FirebaseApp);
+  const MyCollection = collection(MyDB, "UserCollection");
   // const [userName, setUserName] = useState("");
   const navigate = useNavigate();
 
@@ -33,14 +35,39 @@ const Signup = () => {
     document.title = "Log in or Sign Up | Arraytree";
   }, []);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setemail(data.Email);
     setpassword(data.Password);
+    try {
+      const MyDocs = await getDocs(query(MyCollection));
+      MyDocs.forEach((ele) => {
+        let MyElement = ele.data();
+
+        if (email === MyElement.Email) {
+          throw new Error("Email Already Exists");
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      return;
+    }
     setNextPage(!nextPage);
   };
 
-  const redirect = () => {
-    navigate("/register/select-categories");
+  const redirect = async () => {
+    try {
+      const MyDocs = await getDocs(query(MyCollection));
+      MyDocs.forEach((ele) => {
+        let MyElement = ele.data();
+        if (username === MyElement.Username) {
+          throw new Error("Username Already Exists");
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    await navigate("/register/select-categories");
   };
 
   return (
