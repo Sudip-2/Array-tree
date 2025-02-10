@@ -26,8 +26,10 @@ import aistar from "../Assets/Aistar.svg";
 import { RiResetRightFill } from "react-icons/ri";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import Loader from "../Components/Loader";
+import ErrorDiv from "../Components/AuthComponents/ErrorDiv";
 const Profile = () => {
   const [Loading, setLoading] = useState(false);
+  const [MyError, setMyError] = useState(null);
   const Navigate = useNavigate();
   const {
     plan,
@@ -77,6 +79,7 @@ const Profile = () => {
     } catch (error) {
       setLoading(false);
       console.error(error);
+      setMyError("Internal Server Error");
     }
   };
   function GenerateText() {
@@ -206,6 +209,11 @@ const Profile = () => {
                 </div>
 
                 {/* Links */}
+                {MyError && (
+                  <div className="font-bold flex justify-center">
+                    <ErrorDiv text={MyError.message} />
+                  </div>
+                )}
                 <div className="mt-6 text-center">
                   <SubHeading text={"Add Links to your Arraytree"} />
 

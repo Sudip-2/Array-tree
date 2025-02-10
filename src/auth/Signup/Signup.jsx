@@ -19,9 +19,16 @@ import {
   getFirestore,
   query,
 } from "firebase/firestore/lite";
-import ErrorDiv from '../../Components/AuthComponents/ErrorDiv'
-
+import ErrorDiv from "../../Components/AuthComponents/ErrorDiv";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  getRedirectResult,
+  signInWithRedirect,
+} from "firebase/auth";
 const Signup = () => {
+  const [MyError, setMyError] = useState(null);
   const {
     register,
     handleSubmit,
@@ -43,22 +50,24 @@ const Signup = () => {
   }, []);
 
   const onSubmit = async (data) => {
-    setemail(data.Email);
+    setemail(data.Email.toLowerCase());
     setpassword(data.Password);
     try {
       const MyDocs = await getDocs(query(MyCollection));
       MyDocs.forEach((ele) => {
         let MyElement = ele.data();
 
-        if (email === MyElement.Email) {
+        if (data.Email.toLowerCase() === MyElement.Email) {
           throw new Error("Email Already Exists");
         }
       });
     } catch (error) {
+      setMyError(error);
       console.log(error);
       return;
     }
     setNextPage(!nextPage);
+    setMyError(null);
   };
 
   const redirect = async () => {
@@ -72,6 +81,7 @@ const Signup = () => {
       });
     } catch (error) {
       console.log(error);
+      setMyError(error);
       return;
     }
     await navigate("/register/select-categories");
@@ -127,21 +137,20 @@ const Signup = () => {
               >
                 <div className={`relative`}>
                   <EmailInput register={register} errors={errors} />
-                  <div className="hidden">
-                    <ErrorDiv text={"Enter correct postal code"} />
-                  </div>
                 </div>
 
                 {/* Password box only after email or name if present */}
                 <div className={`relative`}>
                   <PasswordInput register={register} errors={errors} />
-                  <div className="hidden">
-                    <ErrorDiv text={"Enter correct postal code"} />
-                  </div>
                 </div>
                 {/* Password box only after email or name if present */}
 
                 <Fullwidthcontbtn />
+                {MyError && (
+                  <div className="font-bold flex justify-center">
+                    <ErrorDiv text={MyError.message} />
+                  </div>
+                )}
               </form>
 
               <form
@@ -158,12 +167,14 @@ const Signup = () => {
                     type="text"
                     className="h-[20px] w-full py-[25px] bg-navHoverGrey rounded-lg pl-[86px] pr-[10px] text-navLinkGrey"
                     placeholder="Your Name"
-                    onChange={(e) => setusername(e.target.value)}
+                    onChange={(e) => setusername(e.target.value.toLowerCase())}
                     required
                   />
-                  <div className="hidden">
-                    <ErrorDiv text={"Enter correct postal code"} />
-                  </div>
+                  {MyError && (
+                    <div className="flex justify-center font-bold">
+                      <ErrorDiv text={MyError.message} />
+                    </div>
+                  )}
                 </div>
                 <Fullwidthcontbtn />
               </form>
