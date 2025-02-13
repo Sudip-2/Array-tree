@@ -14,13 +14,7 @@ import { PiLinkSimpleBold } from "react-icons/pi";
 import { useForm } from "react-hook-form";
 import FirebaseContext from "../context/FirebaseContext";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  getDocs,
-  getFirestore,
-  query,
-} from "firebase/firestore/lite";
+import { addDoc, collection, getFirestore } from "firebase/firestore/lite";
 import { useNavigate } from "react-router-dom";
 import aistar from "../Assets/Aistar.svg";
 import { RiResetRightFill } from "react-icons/ri";
@@ -48,11 +42,7 @@ const Profile = () => {
   // const [Xshow, setXshow] = useState(false)
   const [personalLinkshow, setPersoLinkshow] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     try {
