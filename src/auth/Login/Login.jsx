@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SigninBtn from "../../Components/AuthComponents/SigninBtn";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import NavHeading from "../../Components/AuthComponents/NavHeading";
 import Bigheading from "../../Components/AuthComponents/Bigheading";
 import Fullwidthcontbtn from "../../Components/AuthComponents/Fullwidthcontbtn";
@@ -105,7 +105,10 @@ const Login = () => {
                     text={"Continue with Google"}
                     icon={<FcGoogle />}
                   />
-                  <SigninBtn text={"Continue with Apple"} icon={<FaApple />} />
+                  <SigninBtn
+                    text={"Continue with Facebook"}
+                    icon={<FaFacebook />}
+                  />
                 </div>
 
                 <div className="flex items-center gap-1 mt-[35px]">

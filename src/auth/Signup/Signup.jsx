@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import SigninBtn from "../../Components/AuthComponents/SigninBtn";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import NavHeading from "../../Components/AuthComponents/NavHeading";
 import Bigheading from "../../Components/AuthComponents/Bigheading";
 import Fullwidthcontbtn from "../../Components/AuthComponents/Fullwidthcontbtn";
@@ -186,7 +186,10 @@ const Signup = () => {
               >
                 <p className="text-navLinkGreys">OR</p>
                 <SigninBtn text={"Continue with Google"} icon={<FcGoogle />} />
-                <SigninBtn text={"Continue with Apple"} icon={<FaApple />} />
+                <SigninBtn
+                  text={"Continue with Facebook"}
+                  icon={<FaFacebook />}
+                />
               </div>
 
               <Accountornot
