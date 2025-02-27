@@ -1,17 +1,36 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import { FaPlus } from "react-icons/fa6";
 import FirebaseContext from "../../context/FirebaseContext";
 
 const Profilepic = () => {
-  const { profilepic, setprofilepic } = useContext(FirebaseContext);
+  const { profilepic, setprofilepic, username } = useContext(FirebaseContext);
   let defImg1 =
     "https://imgs.search.brave.com/zfoHqt9KUOImiZ0lQRyvkzs87HSDrb3tM7M50g6Vw1I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/YWJzdHJhY3QtaW1h/Z2Utb2YtY29sb3Jl/ZC1wYXBlci1jcmVh/dGluZy1ob3Jpem9u/dGFsLWxpbmVzLmpw/Zz93aWR0aD0xMDAw/JmZvcm1hdD1wanBn/JmV4aWY9MCZpcHRj/PTA";
   let defImg2 =
     "https://imgs.search.brave.com/KDTk9A39Fb5DrplC7a-x3xDwhdCzm8rXhB3MtJYlgzE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQz/NTkwMDYyMy9waG90/by9iYWNrZ3JvdW5k/LWJsdXItY29sb3Jm/dWwtb3JhbmdlLXB1/cnBsZS1ibHVlLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1r/dnRGYS1icG1fUnk5/blhLTDJERElFUncy/S0paeS1jVGctdk1f/OEZaWlRZPQ";
-  const setImageinDef = (event) => {
+  const setImageinDef = async (event) => {
     let file = event.target.files[0];
-    if (file) {
-      setprofilepic(URL.createObjectURL(file));
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ArrayTree_Unsigned_Upload");
+    formData.append("public_id", Math.round(Math.random() * 1000) + username);
+    try {
+      let res = await fetch(
+        "https://api.cloudinary.com/v1_1/pritamstech-cloudinay-storage/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      res = await res.json();
+      console.log(res);
+
+      if (res.secure_url) {
+        setprofilepic(res.secure_url);
+      }
+    } catch (err) {
+      console.error("Upload Error:", err);
     }
   };
 

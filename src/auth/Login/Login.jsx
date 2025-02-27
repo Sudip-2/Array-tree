@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SigninBtn from "../../Components/AuthComponents/SigninBtn";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import NavHeading from "../../Components/AuthComponents/NavHeading";
 import Bigheading from "../../Components/AuthComponents/Bigheading";
 import Fullwidthcontbtn from "../../Components/AuthComponents/Fullwidthcontbtn";
@@ -11,11 +11,17 @@ import Accountornot from "../../Components/AuthComponents/Accountornot";
 import loginPic from "../../assets/login.png";
 import EmailInput from "../../Components/AuthComponents/EmailInput";
 import PasswordInput from "../../Components/AuthComponents/PasswordInput";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import FirebaseContext from "../../context/FirebaseContext";
 import Loader from "../../Components/Loader";
 import ErrorDiv from "../../Components/AuthComponents/ErrorDiv";
 const Login = () => {
+  const [Error, setError] = useState(null);
   const [Loading, setLoading] = useState(false);
   const { FirebaseApp, user, setuser } = useContext(FirebaseContext);
   const Navigation = useNavigate();
@@ -29,7 +35,7 @@ const Login = () => {
       setLoading(true);
       const User = await signInWithEmailAndPassword(
         getAuth(FirebaseApp),
-        data.Email,
+        data.Email.toLowerCase(),
         data.Password
       );
       if (User) {
@@ -39,6 +45,7 @@ const Login = () => {
       // console.log(User);
     } catch (error) {
       setLoading(false);
+      setError("Invalid Credentials");
       console.log(error);
     }
   };
@@ -76,21 +83,20 @@ const Login = () => {
                 >
                   <div className="relative">
                     <EmailInput register={register} errors={errors} />
-                    <div className="hidden">
-                      <ErrorDiv text={"Enter correct postal code"} />
-                    </div>
                   </div>
 
                   {/* Password box only after email or name if present */}
                   <div className="relative">
                     <PasswordInput register={register} errors={errors} />
-                    <div className="hidden">
-                      <ErrorDiv text={"Enter correct postal code"} />
-                    </div>
                   </div>
                   {/* Password box only after email or name if present */}
 
                   <Fullwidthcontbtn />
+                  {Error && (
+                    <div className="font-bold flex justify-center">
+                      <ErrorDiv text={Error} />
+                    </div>
+                  )}
                 </form>
 
                 <div className="flex flex-col items-center w-full gap-3 mt-[35px]">
@@ -99,7 +105,10 @@ const Login = () => {
                     text={"Continue with Google"}
                     icon={<FcGoogle />}
                   />
-                  <SigninBtn text={"Continue with Apple"} icon={<FaApple />} />
+                  <SigninBtn
+                    text={"Continue with Facebook"}
+                    icon={<FaFacebook />}
+                  />
                 </div>
 
                 <div className="flex items-center gap-1 mt-[35px]">
