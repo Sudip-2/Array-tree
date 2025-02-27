@@ -15,7 +15,11 @@ export default {
         loginBtnClr:'#8129D9',
         responsiveNavbarBgClr:"rgb(67, 230, 96)",
         responsiveNavbartextClr:"rgb(37, 79, 26)",
-
+        secondPageBgClr:"rgb(233, 192, 233)",
+        secondPageTextClr:"rgb(80, 34, 116)",
+        ThirdPageBgClr:"#780016",
+        ThirdPagetextClr:"#E9C0E9",
+        FooterBtnClr:"rgb(210, 232, 35)",
       },
       fontFamily:{
         headingFont:['Montserrat','sans-serif']
