@@ -1,6 +1,6 @@
 import React from 'react'
 import LinkedBtn from './LinkedBtn'
-import SecondPagePara from './secondPagePara'
+import SecondPagePara from './SecondPagePara.jsx'
 import SecondPageHeading from './secondPageHeading'
 
 const SecondPage = () => {

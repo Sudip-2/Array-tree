@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimate } from "framer-motion";
 import SecondPageHeading from "../SecondPage/secondPageHeading";
-import SecondPagePara from "../SecondPage/secondPagePara";
 import LinkedBtn from "../SecondPage/LinkedBtn";
 import CardAnimation from "./CardAnimation";
 import BackCoverSmallAni from "./BackCoverSmallAni";
+import SecondPagePara from "../SecondPage/SecondPagePara";
 
 const ThirdPage = () => {
 

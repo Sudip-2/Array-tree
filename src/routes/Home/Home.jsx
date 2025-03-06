@@ -7,6 +7,7 @@ import SecondPage from '../../Components/LandingPages/SecondPage/SecondPage';
 import ThirdPage from '../../Components/LandingPages/ThirdPage/ThirdPage.jsx';
 import Qna from '../../Components/LandingPages/QNA/Qna.jsx';
 import Footer from '../../Components/Footer/Footer.jsx';
+import FourthPage from '../../Components/LandingPages/FourthPage/FourthPage.jsx';
 
 const Home = () => {
 
@@ -107,6 +108,7 @@ const Home = () => {
       </div>
       <SecondPage />
       <ThirdPage />
+      <FourthPage/>
       <Qna />
       <Footer />
     </>
