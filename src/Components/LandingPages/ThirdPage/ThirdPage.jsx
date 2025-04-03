@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimate } from "framer-motion";
-import SecondPageHeading from "../SecondPage/secondPageHeading";
+import SecondPageHeading from "../SecondPage/SecondPageHeading";
 import LinkedBtn from "../SecondPage/LinkedBtn";
 import CardAnimation from "./CardAnimation";
 import BackCoverSmallAni from "./BackCoverSmallAni";
@@ -16,87 +16,93 @@ const ThirdPage = () => {
 
     const [miniscope, animateM] = useAnimate();
 
+    const thirdPage = useRef(null)
+
     const sequenceAniTwo = () => {
-        animateM("#backCoverAni", { x: [0, -65], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#backCoverAni", { x: [-65, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+        if (thirdPage.current) {
+            animateM("#backCoverAni", { x: [0, -65], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#backCoverAni", { x: [-65, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#InstaAnim", { x: [0, -48], y: [0, 25], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#InstaAnim", { x: [-48, 0], y: [25, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#InstaAnim", { x: [0, -48], y: [0, 25], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#InstaAnim", { x: [-48, 0], y: [25, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#chairAnim", { x: [0, 36], y: [0, 35], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#chairAnim", { x: [36, 0], y: [35, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#chairAnim", { x: [0, 36], y: [0, 35], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#chairAnim", { x: [36, 0], y: [35, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#cMediumAnim", { y: [0, -64], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#cMediumAnim", { y: [-64, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#cMediumAnim", { y: [0, -64], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#cMediumAnim", { y: [-64, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#CvideoAnim", { x: [0, 60], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#CvideoAnim", { x: [60, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#CvideoAnim", { x: [0, 60], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#CvideoAnim", { x: [60, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#TwitterAnim", { y: [0, 50], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#TwitterAnim", { y: [50, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#TwitterAnim", { y: [0, 50], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#TwitterAnim", { y: [50, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        // For Big screen
-        animateM("#backCoverAniB", { x: [0, -130], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#backCoverAniB", { x: [-130, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            // For Big screen
+            animateM("#backCoverAniB", { x: [0, -130], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#backCoverAniB", { x: [-130, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#cMediumAnimB", { y: [0, -85], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#cMediumAnimB", { y: [-85, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#cMediumAnimB", { y: [0, -85], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#cMediumAnimB", { y: [-85, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#CvideoAnimB", { x: [0, 100], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#CvideoAnimB", { x: [100, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#CvideoAnimB", { x: [0, 100], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#CvideoAnimB", { x: [100, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#chairAnimB", { x: [0, 75], y: [0, 60], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#chairAnimB", { x: [75, 0], y: [60, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#chairAnimB", { x: [0, 75], y: [0, 60], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#chairAnimB", { x: [75, 0], y: [60, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#InstaAnimB", { x: [0, -75], y: [0, 45], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#InstaAnimB", { x: [-75, 0], y: [35, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#InstaAnimB", { x: [0, -75], y: [0, 45], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#InstaAnimB", { x: [-75, 0], y: [35, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
 
-        animateM("#TwitterAnimB", { y: [0, 75], opacity: [1] }, { duration: 1 });
-        setTimeout(() => {
-            animateM("#TwitterAnimB", { y: [75, 0], opacity: [1, 0] }, { duration: 1 });
-        }, 2000);
+            animateM("#TwitterAnimB", { y: [0, 75], opacity: [1] }, { duration: 1 });
+            setTimeout(() => {
+                animateM("#TwitterAnimB", { y: [75, 0], opacity: [1, 0] }, { duration: 1 });
+            }, 2000);
+        }
     };
 
     const [scope, animate] = useAnimate();
-
+    let isActive = useRef(true);
     const sequenceAni = async () => {
-        while (true) {
-            await animate("#cardAnim", { opacity: 1 });
-            await animate("#BtnMainB", { x: 125, y: -85 }, { duration: 0.5, delay: 3 });
-            if (window.innerWidth < 640) {
-                await animate("#BtnMain", { x: 90, y: -45 }, { duration: 0.5, delay: 3 });
-            }
-            await animate("#cardAnim", { opacity: 0 });
+        if (thirdPage.current) {
+            while (isActive) {
+                await animate("#cardAnim", { opacity: 1 });
+                await animate("#BtnMainB", { x: 125, y: -85 }, { duration: 0.5, delay: 3 });
+                if (window.innerWidth < 640) {
+                    await animate("#BtnMain", { x: 90, y: -45 }, { duration: 0.5, delay: 3 });
+                }
+                await animate("#cardAnim", { opacity: 0 });
 
-            sequenceAniTwo();
-            await animate("#card02Anim", { opacity: 1 });
-            await animate("#card02Anim", { opacity: 0 }, { delay: 3 });
+                sequenceAniTwo();
+                await animate("#card02Anim", { opacity: 1 });
+                await animate("#card02Anim", { opacity: 0 }, { delay: 3 });
 
-            await animate("#BtnMainB", { x: 0, y: 0 }, { duration: 0.5 });
-            if (window.innerWidth < 640) {
-                await animate("#BtnMain", { x: 0, y: 0 }, { duration: 0.5 });
+                await animate("#BtnMainB", { x: 0, y: 0 }, { duration: 0.5 });
+                if (window.innerWidth < 640) {
+                    await animate("#BtnMain", { x: 0, y: 0 }, { duration: 0.5 });
+                }
             }
         }
     };
@@ -104,10 +110,14 @@ const ThirdPage = () => {
 
     useEffect(() => {
         sequenceAni();
-    }, []);
+        return () => {
+          isActive.current = false;
+        };
+      }, []);
+      
 
     return (
-        <div className="bg-ThirdPageBgClr">
+        <div className="bg-ThirdPageBgClr" ref={thirdPage}>
             <div className="min-h-svh sm:mx-[60px] 2xl:mx-auto lg:max-w-[1536px] px-8 lg:grid lg:grid-cols-2">
                 <div className="order-1 pt-16 pb-10 lg:flex lg:flex-col justify-center">
                     <SecondPageHeading

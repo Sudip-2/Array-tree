@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useAnimate, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Phone from './Phone.jsx';
@@ -38,32 +38,42 @@ const Home = () => {
     setSkew(0)
   }
 
+  let isActive = useRef(true)
+
+  const home = useRef(null)
 
   const sequenceAni = async () => {
-    while (true) {
-      await animate("#target1", { scale: [1] }, { delay: 3 });
-      await animate("#target1", { rotateY: [80] });
-      await animate("#target1", { scale: [0] });
-      await animate("#target2", { scale: [1], rotateY: [80, 360], opacity: 1 }, { duration: 1 });
-  
-      await new Promise(resolve => setTimeout(resolve, 3000));
-  
-      await animate("#target2", { rotateY: [440] });
-      await animate("#target2", { scale: [0] });
-      await animate("#target1", { scale: [1], rotateY: [440, 720], opacity: 1 }, { duration: 1 });
+    if (home.current) {
+      while (isActive) {
+        await animate("#target1", { scale: [1] }, { delay: 3 });
+        await animate("#target1", { rotateY: [80] });
+        await animate("#target1", { scale: [0] });
+        await animate("#target2", { scale: [1], rotateY: [80, 360], opacity: 1 }, { duration: 1 });
+
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        await animate("#target2", { rotateY: [440] });
+        await animate("#target2", { scale: [0] });
+        await animate("#target1", { scale: [1], rotateY: [440, 720], opacity: 1 }, { duration: 1 });
+      }
     }
   };
-  
+
 
   useEffect(() => {
     sequenceAni();
+    return () => {
+      isActive.current = false; 
+    };
   }, []);
+  
 
   return (
 
     <>
       <div className='min-h-svh bg-landingBg sm:mx-[60px] lg:flex pt-[80px] sm:pt-[168px] xl:pt-44 2xl:mx-auto lg:max-w-[1500px] mx-8 pb-24'
         onMouseMove={handleMouseMove}
+        ref={home}
       >
 
 
@@ -108,7 +118,7 @@ const Home = () => {
       </div>
       <SecondPage />
       <ThirdPage />
-      <FourthPage/>
+      <FourthPage />
       <Qna />
       <Footer />
     </>
